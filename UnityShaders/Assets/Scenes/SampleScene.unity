@@ -657,6 +657,7 @@ GameObject:
   - component: {fileID: 1111391845}
   - component: {fileID: 1111391844}
   - component: {fileID: 1111391843}
+  - component: {fileID: 1111391846}
   m_Layer: 0
   m_Name: Liquid
   m_TagString: Untagged
@@ -753,6 +754,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111391841}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1111391846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111391841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b586795d0a60a5543904b1ed229e36b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementInfluence: 0.2
+  rotationInfluence: 0.2
+  recoverySpeed: 2.39
+  bubbleThreshold: 3.45
+  bubbleRecoverySpeed: 4.24
 --- !u!1001 &1731503511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -763,43 +781,43 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7b1e231da49f9be48a2054119e537018, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.045
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1e231da49f9be48a2054119e537018, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.36
+      value: -0.28
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1e231da49f9be48a2054119e537018, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.246
+      value: 1.13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1e231da49f9be48a2054119e537018, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.89960843
+      value: 0.811505
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1e231da49f9be48a2054119e537018, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.09949663
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1e231da49f9be48a2054119e537018, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.43669754
+      value: 0.55658484
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1e231da49f9be48a2054119e537018, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.14755858
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1e231da49f9be48a2054119e537018, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 19.011
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1e231da49f9be48a2054119e537018, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 411.787
+      value: -292.422
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b1e231da49f9be48a2054119e537018, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -367.826
       objectReference: {fileID: 0}
     - target: {fileID: -7918335002988649766, guid: 7b1e231da49f9be48a2054119e537018, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

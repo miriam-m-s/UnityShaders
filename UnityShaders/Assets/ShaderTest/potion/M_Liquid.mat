@@ -45,6 +45,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: 7c3110ee4495ae447ae7991376abf06a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_7326535749aa43c998540641a114b9a3_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 7c3110ee4495ae447ae7991376abf06a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_7ba059b0479c4957861fe4cf4540c640_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 7c3110ee4495ae447ae7991376abf06a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_f2482afc32d3415e8074496d08431670_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 7c3110ee4495ae447ae7991376abf06a, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -63,11 +71,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Bubble: 0
+    - _Bubles: 0
+    - _LiquidBlend: -0.09
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WaterQuantity: 0.18
+    - _RotationX: 0.01
+    - _RotationY: 0.62
+    - _WaterQuantity: 0.15
     m_Colors:
-    - _Color: {r: 0.9167248, g: 0.3254717, b: 1, a: 0}
-    - _ColorTop: {r: 0.9805629, g: 0.6839622, b: 1, a: 1}
+    - _Color: {r: 0.9800223, g: 0.33490568, b: 1, a: 0}
+    - _ColorTop: {r: 1.4289511, g: 0.9594635, b: 1.6100503, a: 1}
+    - _Rotation: {r: 3.02, g: -0.38, b: 0, a: 0}
+    - _fresnelColor: {r: 0.77613115, g: 0, b: 11.78255, a: 0}
+    - _shakeColor: {r: 0.086538315, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
