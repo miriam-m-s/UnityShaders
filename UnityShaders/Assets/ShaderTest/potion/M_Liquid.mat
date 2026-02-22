@@ -83,7 +83,7 @@ Material:
     - _Color: {r: 0.9800223, g: 0.33490568, b: 1, a: 0}
     - _ColorTop: {r: 1.4289511, g: 0.9594635, b: 1.6100503, a: 1}
     - _Rotation: {r: 3.02, g: -0.38, b: 0, a: 0}
-    - _fresnelColor: {r: 0.77613115, g: 0, b: 11.78255, a: 0}
+    - _fresnelColor: {r: 0.00073146424, g: 0.00073146424, b: 0.00073146424, a: 0}
     - _shakeColor: {r: 0.086538315, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
