@@ -31,8 +31,8 @@ public class PotionMovement : MonoBehaviour
     void Update()
     {
         if (rend == null) return;
-        float deltaTime = Application.isPlaying ? Time.deltaTime : 0.02f;
-
+        float deltaTime =  Time.deltaTime ;
+        
         // 1. Calcular velocidades
         Vector3 velocity = (transform.position - lastPosition) / deltaTime;
         Quaternion deltaRot = transform.rotation * Quaternion.Inverse(lastRotation);
@@ -79,4 +79,6 @@ public class PotionMovement : MonoBehaviour
         lastPosition = transform.position;
         lastRotation = transform.rotation;
     }
+
+    
 }
