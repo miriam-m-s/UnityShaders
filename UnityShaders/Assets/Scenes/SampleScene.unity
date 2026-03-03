@@ -1054,7 +1054,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1c1a16556188a0d4b80b5364fdcec4e5, type: 2}
+  - {fileID: 2100000, guid: b79ed36cb4a23c146964f67d6eb36e30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1096,7 +1096,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4551d2997779db447ba1215532338a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaterSpeed: 9.5
+  WobbleSpeed: 1
+  Recovery: 0.1
+  MaxWobble: 0.05
+  VelocityScale: 1
 --- !u!1 &1873500161
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,7 +1383,7 @@ Transform:
   m_GameObject: {fileID: 2127948669}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.37136775, z: -0, w: 0.9284859}
-  m_LocalPosition: {x: 5.33, y: 0, z: 6.35}
+  m_LocalPosition: {x: 6.18, y: 0, z: 7.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
