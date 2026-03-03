@@ -46,10 +46,10 @@ public class Liquid : MonoBehaviour
         //sine = Mathf.Lerp(sine, Mathf.Sin(pulse * time), deltaTime * Mathf.Clamp(velocity.magnitude, 0,1));
 
         float mVelocity = Mathf.Clamp(velocity.magnitude, 0f, 1f); // normaliza magnitud
-        float targetSine = Mathf.Sin(pulse * time) * mVelocity;    // escala la onda según velocidad
+        float targetSine = Mathf.Sin(pulse * time);    // escala la onda según velocidad
 
         // Lerp desde el valor actual hacia el objetivo, usando deltaTime * Recovery
-        sine = Mathf.Lerp(sine, targetSine, deltaTime * Recovery);
+        sine = Mathf.Lerp(sine, targetSine, deltaTime * 2f);
 
         wobbleX = wobbleAddX * sine;
         wobbleZ = wobbleAddZ * sine;
