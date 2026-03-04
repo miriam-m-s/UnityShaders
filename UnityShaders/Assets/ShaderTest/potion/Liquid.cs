@@ -1,13 +1,13 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 
 [ExecuteAlways]
 public class Liquid : MonoBehaviour
 {
     [SerializeField][Range(0f, 2f)] float WobbleSpeed = 1.0f;    // Velocidad de la onda
-    [SerializeField][Range(0f, 2f)] float Recovery = 0.1f;       // QuÈ tan r·pido vuelve a 0
-    [SerializeField][Range(0f, 0.5f)] float MaxWobble = 0.05f;   // M·ximo wobble
-    [SerializeField][Range(0f, 5f)] float VelocityScale = 1.0f;  // Escala de efecto seg˙n velocidad
-
+    [SerializeField][Range(0f, 2f)] float Recovery = 0.1f;       // Qu√© tan r√°pido vuelve a 0
+    [SerializeField][Range(0f, 0.5f)] float MaxWobble = 0.05f;   // M√°ximo wobble
+    [SerializeField][Range(0f, 5f)] float VelocityScale = 1.0f;  // Escala de efecto seg√∫n velocidad
+    [SerializeField] private float wobbleOffsetLimit = 0.2f;
     private Renderer rend;
     private Vector3 lastPos;
     private Vector3 velocity;
@@ -18,10 +18,12 @@ public class Liquid : MonoBehaviour
     private float wobbleAddZ = 0f;
     private float time = 0f;
     float sine=0f;
+    Vector3 lastvelocity;
     void Awake()
     {
         rend = GetComponent<Renderer>();
         lastPos = transform.position;
+        lastvelocity=Vector3.zero;
     }
 
     void Update()
@@ -36,7 +38,7 @@ public class Liquid : MonoBehaviour
         wobbleAddX += Mathf.Clamp(velocity.x + (velocity.y * 0.2f) * VelocityScale, -MaxWobble, MaxWobble);
         wobbleAddZ += Mathf.Clamp(velocity.z + (velocity.y * 0.2f) * VelocityScale, -MaxWobble, MaxWobble);
 
-        // Decay / recuperaciÛn hacia 0
+        // Decay / recuperaci√≥n hacia 0
         wobbleAddX = Mathf.Lerp(wobbleAddX, 0f, deltaTime * Recovery);
         wobbleAddZ = Mathf.Lerp(wobbleAddZ, 0f, deltaTime * Recovery);
 
@@ -46,19 +48,34 @@ public class Liquid : MonoBehaviour
         //sine = Mathf.Lerp(sine, Mathf.Sin(pulse * time), deltaTime * Mathf.Clamp(velocity.magnitude, 0,1));
 
         float mVelocity = Mathf.Clamp(velocity.magnitude, 0f, 1f); // normaliza magnitud
-        float targetSine = Mathf.Sin(pulse * time);    // escala la onda seg˙n velocidad
+        float targetSine = Mathf.Sin(pulse * time);    // escala la onda seg√∫n velocidad
 
         // Lerp desde el valor actual hacia el objetivo, usando deltaTime * Recovery
-        sine = Mathf.Lerp(sine, targetSine, deltaTime * 2f);
+        bool tooMuchWobble =
+            Mathf.Abs(wobbleAddX) > wobbleOffsetLimit ||
+            Mathf.Abs(wobbleAddZ) > wobbleOffsetLimit;
+        //if (!tooMuchWobble)
+        //{
+        float motion = velocity.magnitude ;
 
-        wobbleX = wobbleAddX * sine;
+        // Normalizar movimiento (ajusta 5f seg√∫n tu escala real)
+        float normalizedMotion = Mathf.Clamp01(motion / 5f);
+
+        // Invertirlo (m√°s movimiento = menos wobble)
+        float wobbleFactor = 1f - normalizedMotion;
+        sine = Mathf.Lerp(sine, targetSine, deltaTime * wobbleFactor);
+            //}
+     
+
+            wobbleX = wobbleAddX * sine;
         wobbleZ = wobbleAddZ * sine;
-
-        // EnvÌa al shader
+        
+        // Env√≠a al shader
         rend.sharedMaterial.SetFloat("_RotationX", Mathf.Clamp(wobbleX,-1,1));
         rend.sharedMaterial.SetFloat("_RotationY", Mathf.Clamp(wobbleZ, -1, 1));
 
-        // Guarda posiciÛn para el siguiente frame
+        // Guarda posici√≥n para el siguiente frame
         lastPos = transform.position;
+        lastvelocity = velocity;
     }
 }
