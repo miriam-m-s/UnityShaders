@@ -690,6 +690,7 @@ GameObject:
   - component: {fileID: 1111391844}
   - component: {fileID: 1111391843}
   - component: {fileID: 1111391846}
+  - component: {fileID: 1111391847}
   m_Layer: 0
   m_Name: Liquid
   m_TagString: Untagged
@@ -798,11 +799,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b586795d0a60a5543904b1ed229e36b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementInfluence: 0.66
-  rotationInfluence: 0.4
-  recoverySpeed: 10
-  bubbleThreshold: 1.54
-  bubbleRecoverySpeed: 3.8
+  movementInfluence: 0.2
+  rotationInfluence: 0.2
+  recoverySpeed: 3
+  bubbleThreshold: 1
+  bubbleRecoverySpeed: 2
+--- !u!114 &1111391847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111391841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4551d2997779db447ba1215532338a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SloshSpeed: 1
+  Recovery: 1.729
+  MaxSlosh: 0.051
 --- !u!4 &543450652002075260
 Transform:
   m_ObjectHideFlags: 0
@@ -1109,63 +1125,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5914173764638826728}
   m_Mesh: {fileID: 3447038591770236762, guid: 7b1e231da49f9be48a2054119e537018, type: 3}
---- !u!1001 &7153769667942126190
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5182161393120735781, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 6.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182161393120735781, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182161393120735781, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182161393120735781, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9284859
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182161393120735781, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182161393120735781, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.37136775
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182161393120735781, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182161393120735781, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182161393120735781, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 43.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182161393120735781, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8253992884951846822, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
-      propertyPath: m_Name
-      value: potion2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
 --- !u!23 &7202271456373576520
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1360,4 +1319,3 @@ SceneRoots:
   - {fileID: 649873233}
   - {fileID: 299671172}
   - {fileID: 227030208}
-  - {fileID: 7153769667942126190}

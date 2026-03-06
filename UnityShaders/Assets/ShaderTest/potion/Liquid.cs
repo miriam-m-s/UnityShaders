@@ -3,79 +3,101 @@
 [ExecuteAlways]
 public class Liquid : MonoBehaviour
 {
-    [SerializeField][Range(0f, 2f)] float WobbleSpeed = 1.0f;    // Velocidad de la onda
-    [SerializeField][Range(0f, 2f)] float Recovery = 0.1f;       // Qué tan rápido vuelve a 0
-    [SerializeField][Range(0f, 0.5f)] float MaxWobble = 0.05f;   // Máximo wobble
-    [SerializeField][Range(0f, 5f)] float VelocityScale = 1.0f;  // Escala de efecto según velocidad
-    [SerializeField] private float wobbleOffsetLimit = 0.2f;
+    [SerializeField][Range(0f, 2f)] float SloshSpeed = 1.0f;
+    [SerializeField][Range(0f, 2f)] float Recovery = 0.1f;
+    [SerializeField][Range(0f, 0.5f)] float MaxSlosh = 0.05f;
+
     private Renderer rend;
+    private MaterialPropertyBlock block;
+
     private Vector3 lastPos;
     private Vector3 velocity;
 
-    private float wobbleX = 0f;
-    private float wobbleZ = 0f;
-    private float wobbleAddX = 0f;
-    private float wobbleAddZ = 0f;
+    private Quaternion lastRot;
+    private Vector3 angularVelocity;
+
+    private float sloshX = 0f;
+    private float sloshZ = 0f;
+    private float sloshAddX = 0f;
+    private float sloshAddZ = 0f;
+
     private float time = 0f;
-    float sine=0f;
-    Vector3 lastvelocity;
+    private float sine = 0f;
+
     void Awake()
     {
         rend = GetComponent<Renderer>();
+        block = new MaterialPropertyBlock();
+
         lastPos = transform.position;
-        lastvelocity=Vector3.zero;
+        lastRot = transform.rotation;
+    }
+
+    void OnEnable()
+    {
+        if (block == null)
+            block = new MaterialPropertyBlock();
+
+        if (rend == null)
+            rend = GetComponent<Renderer>();
     }
 
     void Update()
     {
         float deltaTime = Time.deltaTime;
+
+        if (deltaTime <= 0f)
+            return;
+
         time += deltaTime;
 
-        // Calcula la velocidad
+        // RECOVERY
+        sloshAddX = Mathf.Lerp(sloshAddX, 0f, deltaTime * Recovery);
+        sloshAddZ = Mathf.Lerp(sloshAddZ, 0f, deltaTime * Recovery);
+
+        // VELOCIDAD LINEAL
         velocity = (transform.position - lastPos) / deltaTime;
 
-        // Aplica wobble solo si supera un threshold
-        wobbleAddX += Mathf.Clamp(velocity.x + (velocity.y * 0.2f) * VelocityScale, -MaxWobble, MaxWobble);
-        wobbleAddZ += Mathf.Clamp(velocity.z + (velocity.y * 0.2f) * VelocityScale, -MaxWobble, MaxWobble);
+        // VELOCIDAD ANGULAR
+        Quaternion deltaRot = transform.rotation * Quaternion.Inverse(lastRot);
+        Vector3 deltaEuler = deltaRot.eulerAngles;
 
-        // Decay / recuperación hacia 0
-        wobbleAddX = Mathf.Lerp(wobbleAddX, 0f, deltaTime * Recovery);
-        wobbleAddZ = Mathf.Lerp(wobbleAddZ, 0f, deltaTime * Recovery);
+        deltaEuler.x = Mathf.DeltaAngle(0, deltaEuler.x);
+        deltaEuler.y = Mathf.DeltaAngle(0, deltaEuler.y);
+        deltaEuler.z = Mathf.DeltaAngle(0, deltaEuler.z);
 
-        // Onda senoidal para el wobble
-        float pulse = 2f * Mathf.PI * WobbleSpeed;
+        angularVelocity = deltaEuler / deltaTime;
 
-        //sine = Mathf.Lerp(sine, Mathf.Sin(pulse * time), deltaTime * Mathf.Clamp(velocity.magnitude, 0,1));
+        // INERCIA POR MOVIMIENTO
+        sloshAddX += Mathf.Clamp(
+            velocity.x + velocity.y * 0.2f ,
+            -MaxSlosh,
+            MaxSlosh);
+        //(angularVelocity.x + angularVelocity.y) * 0.01f
+        sloshAddZ += Mathf.Clamp(
+            velocity.z + velocity.y * 0.2f ,
+            -MaxSlosh,
+            MaxSlosh);
 
-        float mVelocity = Mathf.Clamp(velocity.magnitude, 0f, 1f); // normaliza magnitud
-        float targetSine = Mathf.Sin(pulse * time);    // escala la onda según velocidad
+        // OSCILACIÓN
+        float pulse = 2f * Mathf.PI * SloshSpeed;
+        float targetSine = Mathf.Sin(pulse * time);
 
-        // Lerp desde el valor actual hacia el objetivo, usando deltaTime * Recovery
-        bool tooMuchWobble =
-            Mathf.Abs(wobbleAddX) > wobbleOffsetLimit ||
-            Mathf.Abs(wobbleAddZ) > wobbleOffsetLimit;
-        //if (!tooMuchWobble)
-        //{
-        float motion = velocity.magnitude ;
+        sine = Mathf.Lerp(sine, targetSine, deltaTime * Mathf.Clamp(velocity.magnitude+angularVelocity.magnitude*0.01f, 3f, 10f));
+        sine = Mathf.Lerp( sine,1.0f, deltaTime * (velocity.magnitude + angularVelocity.magnitude * 0.01f) * 0.9f);
+        sloshX = sloshAddX * sine;
+        sloshZ = sloshAddZ * sine;
 
-        // Normalizar movimiento (ajusta 5f según tu escala real)
-        float normalizedMotion = Mathf.Clamp01(motion / 5f);
+        // ENVIAR AL SHADER (sin crear materiales)
+        rend.GetPropertyBlock(block);
 
-        // Invertirlo (más movimiento = menos wobble)
-        float wobbleFactor = 1f - normalizedMotion;
-        sine = Mathf.Lerp(sine, targetSine, deltaTime * wobbleFactor);
-            //}
-     
+        block.SetFloat("_RotationX", Mathf.Clamp(sloshX, -1f, 1f));
+        block.SetFloat("_RotationY", Mathf.Clamp(sloshZ, -1f, 1f));
 
-            wobbleX = wobbleAddX * sine;
-        wobbleZ = wobbleAddZ * sine;
-        
-        // Envía al shader
-        rend.sharedMaterial.SetFloat("_RotationX", Mathf.Clamp(wobbleX,-1,1));
-        rend.sharedMaterial.SetFloat("_RotationY", Mathf.Clamp(wobbleZ, -1, 1));
+        rend.SetPropertyBlock(block);
 
-        // Guarda posición para el siguiente frame
+        // GUARDAR FRAME
         lastPos = transform.position;
-        lastvelocity = velocity;
+        lastRot = transform.rotation;
     }
 }
