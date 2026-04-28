@@ -84,8 +84,9 @@ Material:
     - _QueueOffset: 0
     - _RotationX: 0
     - _RotationY: 0
+    - _RotationZ: 0
     - _WaterQuantity: 0.561
-    - _WaveAmplitude: 0.135
+    - _WaveAmplitude: 0.1147
     - _WaveFrequency: 5.6
     m_Colors:
     - _BorderColor: {r: 3.2784162, g: 1.522743, b: 3.398121, a: 0}

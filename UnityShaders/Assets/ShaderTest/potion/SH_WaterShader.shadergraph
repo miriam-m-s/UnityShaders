@@ -53,7 +53,13 @@
             "m_Id": "c7ba4c68ffd24be692ca8d05a9adc7cf"
         },
         {
-            "m_Id": "a46698f5da684306a598fbf26dd9df70"
+            "m_Id": "68fee12c39d54c2283b5655089085ab4"
+        },
+        {
+            "m_Id": "0fdeeabd873140e59580276761beb469"
+        },
+        {
+            "m_Id": "0dca6829a7894efc944822ae7637000c"
         }
     ],
     "m_Nodes": [
@@ -2649,10 +2655,10 @@
     "m_Guid": {
         "m_GuidSerialized": "c7d9da81-52f4-481a-8700-3567b0e56f59"
     },
-    "m_Name": "LiquidBlend",
+    "m_Name": "Color Blending Intensity",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "LiquidBlend",
-    "m_DefaultReferenceName": "_LiquidBlend",
+    "m_RefNameGeneratedByDisplayName": "Color Blending Intensity",
+    "m_DefaultReferenceName": "_Color_Blending_Intensity",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -3561,6 +3567,27 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "0dca6829a7894efc944822ae7637000c",
+    "m_Name": "Water Movement",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "631e183a5b7745dc862254fdcbf33c56"
+        },
+        {
+            "m_Id": "a136b8ead8024bca8d7318b6160c4125"
+        },
+        {
+            "m_Id": "cceefccb158746f69c76a219a808ccfe"
+        },
+        {
+            "m_Id": "5e42da55df4545edb07bd443c915e7b8"
+        }
+    ]
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.MultiplyNode",
     "m_ObjectId": "0de4eee6a23a471a89061a639adf1a80",
     "m_Group": {
@@ -3808,6 +3835,21 @@
     "m_Value": 0.05999999865889549,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "0fdeeabd873140e59580276761beb469",
+    "m_Name": "Foam",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "aafe093bdb754128aa23feece48bbc24"
+        },
+        {
+            "m_Id": "f12bb5eb424247329fc853ba49cfe037"
+        }
+    ]
 }
 
 {
@@ -8842,10 +8884,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2288.0,
-            "y": 1343.0,
+            "x": -2369.0,
+            "y": 1353.0,
             "width": 208.0,
-            "height": 315.0
+            "height": 315.0001220703125
         }
     },
     "m_Slots": [
@@ -10027,6 +10069,30 @@
         "z": 0.0,
         "w": 0.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "68fee12c39d54c2283b5655089085ab4",
+    "m_Name": "Color",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "2f66e77b073f4c0e996aa4460230931c"
+        },
+        {
+            "m_Id": "ed47e03f8af04d80921cc2417c6fb1f6"
+        },
+        {
+            "m_Id": "a246404e37b64ff6928e767b22cf33cf"
+        },
+        {
+            "m_Id": "006422373c7d4928bbb4ac13d14a1450"
+        },
+        {
+            "m_Id": "fc3df6e8d9eb4e82bcf51db5594e7b8a"
+        }
+    ]
 }
 
 {
@@ -14005,11 +14071,11 @@
     "m_Guid": {
         "m_GuidSerialized": "3efbf50b-d558-4776-8241-7ff85446875b"
     },
-    "m_Name": "fresnelColor",
+    "m_Name": "Fresnel Color",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "fresnelColor",
-    "m_DefaultReferenceName": "_fresnelColor",
-    "m_OverrideReferenceName": "",
+    "m_RefNameGeneratedByDisplayName": "Fresnel Color",
+    "m_DefaultReferenceName": "_Fresnel_Color",
+    "m_OverrideReferenceName": "_fresnelColor",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
@@ -14185,14 +14251,6 @@
     },
     "m_Labels": [],
     "m_Channel": 0
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
-    "m_ObjectId": "a46698f5da684306a598fbf26dd9df70",
-    "m_Name": "Category",
-    "m_ChildObjectList": []
 }
 
 {
@@ -14410,11 +14468,11 @@
     "m_Guid": {
         "m_GuidSerialized": "43c38c3b-6853-4596-a3b8-17bfc11db392"
     },
-    "m_Name": "BorderColor",
+    "m_Name": "Foam Color",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "BorderColor",
-    "m_DefaultReferenceName": "_BorderColor",
-    "m_OverrideReferenceName": "",
+    "m_RefNameGeneratedByDisplayName": "Foam Color",
+    "m_DefaultReferenceName": "_Foam_Color",
+    "m_OverrideReferenceName": "_BorderColor",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
@@ -15779,10 +15837,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2766.000244140625,
-            "y": 1476.0001220703125,
+            "x": -2739.000244140625,
+            "y": 1189.0,
             "width": 126.0,
-            "height": 34.0
+            "height": 34.0001220703125
         }
     },
     "m_Slots": [
@@ -15937,7 +15995,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "c40d3681429a49bab0f74c48b65d2bd6",
     "m_Id": 0,
-    "m_DisplayName": "RotationY",
+    "m_DisplayName": "RotationZ",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -16248,43 +16306,10 @@
             "m_Id": "03a52afab8a34d87afe6f032da30c807"
         },
         {
-            "m_Id": "2f66e77b073f4c0e996aa4460230931c"
-        },
-        {
-            "m_Id": "ed47e03f8af04d80921cc2417c6fb1f6"
-        },
-        {
-            "m_Id": "006422373c7d4928bbb4ac13d14a1450"
-        },
-        {
-            "m_Id": "5e42da55df4545edb07bd443c915e7b8"
-        },
-        {
-            "m_Id": "cceefccb158746f69c76a219a808ccfe"
-        },
-        {
-            "m_Id": "a246404e37b64ff6928e767b22cf33cf"
-        },
-        {
-            "m_Id": "631e183a5b7745dc862254fdcbf33c56"
-        },
-        {
-            "m_Id": "a136b8ead8024bca8d7318b6160c4125"
-        },
-        {
-            "m_Id": "fc3df6e8d9eb4e82bcf51db5594e7b8a"
-        },
-        {
             "m_Id": "516579bc052a4d9198a75f69b1c5783f"
         },
         {
             "m_Id": "d8f09f1f7e3441c8b40db5554afb898f"
-        },
-        {
-            "m_Id": "f12bb5eb424247329fc853ba49cfe037"
-        },
-        {
-            "m_Id": "aafe093bdb754128aa23feece48bbc24"
         }
     ]
 }
@@ -16584,10 +16609,10 @@
     "m_Guid": {
         "m_GuidSerialized": "021607dc-4929-46a8-81cf-a1bee29ba985"
     },
-    "m_Name": "RotationY",
+    "m_Name": "RotationZ",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "RotationY",
-    "m_DefaultReferenceName": "_RotationY",
+    "m_RefNameGeneratedByDisplayName": "RotationZ",
+    "m_DefaultReferenceName": "_RotationZ",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -19077,10 +19102,10 @@
     "m_Guid": {
         "m_GuidSerialized": "58672450-c655-4ac6-9d60-74ca1a86dab6"
     },
-    "m_Name": "ColorTop",
+    "m_Name": "Top Color",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "ColorTop",
-    "m_DefaultReferenceName": "_ColorTop",
+    "m_RefNameGeneratedByDisplayName": "Top Color",
+    "m_DefaultReferenceName": "_Top_Color",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -19306,11 +19331,11 @@
     "m_Guid": {
         "m_GuidSerialized": "732ede6e-4820-4b6d-a777-27904cd0df70"
     },
-    "m_Name": "BorderTheshold",
+    "m_Name": "Foam Thershold",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "BorderTheshold",
-    "m_DefaultReferenceName": "_BorderTheshold",
-    "m_OverrideReferenceName": "",
+    "m_RefNameGeneratedByDisplayName": "Foam Thershold",
+    "m_DefaultReferenceName": "_Foam_Thershold",
+    "m_OverrideReferenceName": "_BorderTheshold",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
@@ -20057,7 +20082,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "f9fec237377647e2af03c864ee7db12a",
     "m_Id": 0,
-    "m_DisplayName": "RotationY",
+    "m_DisplayName": "RotationZ",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -20133,17 +20158,17 @@
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "fa83aaba08b0426297b21b9de175b6c9",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "06a60b1606c84ca49371434a1501b8de"
     },
     "m_Name": "Property",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2703.13671875,
-            "y": 718.7130126953125,
-            "width": 0.0,
-            "height": 0.0
+            "x": -2739.000244140625,
+            "y": 1050.0,
+            "width": 126.0,
+            "height": 34.0
         }
     },
     "m_Slots": [
@@ -20218,10 +20243,10 @@
     "m_Guid": {
         "m_GuidSerialized": "30cd412c-0a78-477e-b806-a1fd57d70e92"
     },
-    "m_Name": "shakeColor",
+    "m_Name": "Shaking Color",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "shakeColor",
-    "m_DefaultReferenceName": "_shakeColor",
+    "m_RefNameGeneratedByDisplayName": "Shaking Color",
+    "m_DefaultReferenceName": "_Shaking_Color",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,

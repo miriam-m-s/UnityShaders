@@ -70,12 +70,12 @@ public class Liquid : MonoBehaviour
 
         // INERCIA POR MOVIMIENTO
         sloshAddX += Mathf.Clamp(
-            velocity.x + velocity.y * 0.2f ,
+            velocity.x + velocity.y * 0.2f+(angularVelocity.z + angularVelocity.y) * 0.01f,
             -MaxSlosh,
             MaxSlosh);
         //(angularVelocity.x + angularVelocity.y) * 0.01f
         sloshAddZ += Mathf.Clamp(
-            velocity.z + velocity.y * 0.2f ,
+            velocity.z + velocity.y * 0.2f+ (angularVelocity.x + angularVelocity.y) * 0.01f,
             -MaxSlosh,
             MaxSlosh);
 
@@ -83,16 +83,16 @@ public class Liquid : MonoBehaviour
         float pulse = 2f * Mathf.PI * SloshSpeed;
         float targetSine = Mathf.Sin(pulse * time);
 
-        sine = Mathf.Lerp(sine, targetSine, deltaTime * Mathf.Clamp(velocity.magnitude+angularVelocity.magnitude*0.01f, 3f, 10f));
-        sine = Mathf.Lerp( sine,1.0f, deltaTime * (velocity.magnitude + angularVelocity.magnitude * 0.01f) * 0.9f);
+        sine = Mathf.Lerp(sine, targetSine, deltaTime * Mathf.Clamp(velocity.magnitude+angularVelocity.magnitude*0.01f, 4f, 10f));
+        sine = Mathf.Lerp( sine,1.0f, deltaTime * (velocity.magnitude + angularVelocity.magnitude * 0.01f) * 2f);
         sloshX = sloshAddX * sine;
         sloshZ = sloshAddZ * sine;
 
         // ENVIAR AL SHADER (sin crear materiales)
         rend.GetPropertyBlock(block);
 
-        block.SetFloat("_RotationX", Mathf.Clamp(sloshX, -1f, 1f));
-        block.SetFloat("_RotationY", Mathf.Clamp(sloshZ, -1f, 1f));
+        block.SetFloat("_RotationX", Mathf.Clamp(-sloshX, -1f, 1f));
+        block.SetFloat("_RotationZ", Mathf.Clamp(sloshZ, -1f, 1f));
 
         rend.SetPropertyBlock(block);
 

@@ -69,9 +69,7 @@ public class PotionMovement : MonoBehaviour
         block.SetFloat("_BubbleVelocity",bubbleVelocity* 0.0005f);
 
         // Mapeo de rotación del líquido (Wobble)
-        float maxWobble = 2f;
-        block.SetFloat("_RotationX", Mathf.Clamp(wobble.x / maxWobble, -1f, 1f));
-        block.SetFloat("_RotationY", Mathf.Clamp(wobble.z / maxWobble, -1f, 1f));
+     
 
         rend.SetPropertyBlock(block);
 
