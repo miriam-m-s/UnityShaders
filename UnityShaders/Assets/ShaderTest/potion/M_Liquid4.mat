@@ -77,7 +77,7 @@ Material:
     m_Floats:
     - _BorderTheshold: 0.1258
     - _Bubble: 0.041
-    - _BubbleVelocity: 1.71
+    - _BubbleVelocity: 1.05
     - _Bubles: 0
     - _Color_Blending_Intensity: -0.122
     - _LiquidBlend: 0
@@ -86,7 +86,7 @@ Material:
     - _RotationX: 0
     - _RotationY: NaN
     - _RotationZ: 0
-    - _WaterQuantity: 0.578
+    - _WaterQuantity: 0.593
     - _WaveAmplitude: 0.2
     - _WaveFrequency: 5.6
     m_Colors:
@@ -96,7 +96,7 @@ Material:
     - _Rotation: {r: 3.02, g: -0.38, b: 0, a: 0}
     - _ShakingColor: {r: 0, g: 1, b: 0.2028985, a: 0}
     - _Shaking_Color: {r: 0, g: 1, b: 0.2028985, a: 0}
-    - _Top_Color: {r: 0.9036669, g: 1.5157166, b: 0.707811, a: 1}
+    - _Top_Color: {r: 0.8852045, g: 2.0000002, b: 0.5377359, a: 1}
     - _fresnelColor: {r: 1.9896518, g: 5.2780323, b: 1.1203372, a: 0}
     - _shakeColor: {r: 10.392413, g: 1.1678675, b: 0, a: 0}
   m_BuildTextureStacks: []

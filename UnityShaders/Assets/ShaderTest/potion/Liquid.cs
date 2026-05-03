@@ -4,7 +4,7 @@
 public class Liquid : MonoBehaviour
 {
     [SerializeField][Range(0f, 2f)] float SloshSpeed = 1.0f;
-    [SerializeField][Range(0f, 2f)] float Recovery = 0.1f;
+    [SerializeField][Range(0f, 5f)] float Recovery = 0.1f;
     [SerializeField][Range(0f, 0.5f)] float MaxSlosh = 0.05f;
 
     private Renderer rend;
@@ -83,7 +83,7 @@ public class Liquid : MonoBehaviour
         float pulse = 2f * Mathf.PI * SloshSpeed;
         float targetSine = Mathf.Sin(pulse * time);
 
-        sine = Mathf.Lerp(sine, targetSine, deltaTime * Mathf.Clamp(velocity.magnitude+angularVelocity.magnitude*0.01f, 4f, 10f));
+        sine = Mathf.Lerp(sine, targetSine, deltaTime * Mathf.Clamp(velocity.magnitude+angularVelocity.magnitude*0.01f, 6f, 10f));
         sine = Mathf.Lerp( sine,1.0f, deltaTime * (velocity.magnitude + angularVelocity.magnitude * 0.01f) * 2f);
         sloshX = sloshAddX * sine;
         sloshZ = sloshAddZ * sine;
