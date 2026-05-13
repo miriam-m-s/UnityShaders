@@ -52,15 +52,13 @@ public class Liquid : MonoBehaviour
         time += deltaTime;
 
         // --- RETURN SPEED ---
-        // We use Mathf.Lerp to gradually move the slosh value back to zero.
-        // This simulates "viscosity" or "friction", making the liquid return to a resting state.
-        // 
-        // Logic: In every frame, we move a percentage (Recovery * deltaTime) of the remaining 
-        // distance towards 0. This creates an exponential decay effect where the liquid 
-        // moves fast at first and then slows down smoothly as it approaches the center, 
-        // ensuring the stabilization feels organic rather than robotic or linear.
-        slosh_add_x = Mathf.Lerp(slosh_add_x, 0f, deltaTime * ReturnSpeed);
-        slosh_add_z = Mathf.Lerp(slosh_add_z, 0f, deltaTime * ReturnSpeed);
+        // Exponential decay gradually removes energy from the sloshing motion.
+        // This simulates damping/viscosity, making the liquid slowly settle
+        // back to a resting state over time.
+        float decay = Mathf.Exp(-ReturnSpeed * deltaTime);
+
+        slosh_add_x *= decay;
+        slosh_add_z *= decay;
 
         // -- VELOCITY --
         vel = (transform.position - lastPos) / deltaTime;
@@ -95,34 +93,65 @@ public class Liquid : MonoBehaviour
         //
         // The resulting value is clamped to avoid excessive sloshing that would
         // look unstable or unrealistic.
+        float angular_influence = 0.01f;
         slosh_add_x += Mathf.Clamp(
-            vel.x + vel.y * 0.2f+(angular_vel.z + angular_vel.y) * 0.01f,
+            vel.x + vel.y * 0.2f+(angular_vel.z + angular_vel.y) * angular_influence,
             -MaxSlosh,
             MaxSlosh);
         //(angularVelocity.x + angularVelocity.y) * 0.01f
         slosh_add_z += Mathf.Clamp(
-            vel.z + vel.y * 0.2f+ (angular_vel.x + angular_vel.y) * 0.01f,
+            vel.z + vel.y * 0.2f+ (angular_vel.x + angular_vel.y) * angular_influence,
             -MaxSlosh,
             MaxSlosh);
 
-        // OSCILLATION
+       
+        // --- OSCILLATION WAVE ---
+        // Cosine wave represents the natural sloshing bounce of the liquid
         float pulse = 2f * Mathf.PI * SloshSpeed;
-        float target_cos = Mathf.Cos(pulse * time);
+        float wave = Mathf.Cos(pulse * time);
 
-        oscillation = Mathf.Lerp(oscillation, target_cos, deltaTime * Mathf.Clamp(vel.magnitude+angular_vel.magnitude*0.01f, 6f, 10f));
-        oscillation = Mathf.Lerp( oscillation,1.0f, deltaTime * (vel.magnitude + angular_vel.magnitude * 0.01f) * 2f);
+        // Movement intensity affects how responsive the liquid is
+        float response = Mathf.Clamp(
+            vel.magnitude + angular_vel.magnitude * angular_influence,
+            6f,
+            10f);
+
+        // Smoothly follows the target wave (cosine-based sloshing motion)
+        // Instead of snapping directly to the wave, the value gradually approaches it over time.
+        // The speed of this transition depends on the object's movement:
+        // higher velocity and rotation make the liquid react faster (more responsive),
+        // while lower movement makes it lag behind.
+        oscillation = Mathf.Lerp(
+            oscillation,
+            wave,
+            deltaTime * response
+        );
+        // When the object is moving continuously, keeping a strong oscillation
+        // can look overly noisy or unrealistic. To stabilize the motion,
+        // the oscillation is gradually pushed toward 1 during intense movement.
+        //
+        // In practice, this reduces the visible wave effect and allows the
+        // accumulated slosh direction to dominate
+        oscillation = Mathf.Lerp(oscillation, 1.0f, deltaTime * (vel.magnitude + angular_vel.magnitude * 0.01f) * 2f);
+
+
+        // Apply final motion
         sloshX = slosh_add_x * oscillation;
         sloshZ = slosh_add_z * oscillation;
 
-        // ENVIAR AL SHADER (sin crear materiales)
+
+
+
+        // --- SEND DATA TO THE SHADER ---
         rend.GetPropertyBlock(block);
 
+        // Send the final liquid rotation values to the shader.
         block.SetFloat("_RotationX", Mathf.Clamp(-sloshX, -1f, 1f));
         block.SetFloat("_RotationZ", Mathf.Clamp(sloshZ, -1f, 1f));
 
         rend.SetPropertyBlock(block);
 
-        // GUARDAR FRAME
+        // --- STORE CURRENT FRAME DATA ---
         lastPos = transform.position;
         lastRot = transform.rotation;
     }
