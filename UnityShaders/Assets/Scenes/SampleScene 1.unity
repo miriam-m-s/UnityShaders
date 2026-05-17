@@ -799,7 +799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SloshSpeed: 1
-  Recovery: 1.729
+  ReturnSpeed: 0.1
   MaxSlosh: 0.033
 --- !u!114 &1111391848
 MonoBehaviour:
@@ -838,6 +838,10 @@ PrefabInstance:
       propertyPath: SloshSpeed
       value: 1.68
       objectReference: {fileID: 0}
+    - target: {fileID: 1247451105172869868, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
+      propertyPath: ReturnSpeed
+      value: 0.65
+      objectReference: {fileID: 0}
     - target: {fileID: 3489633247106818424, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9161974
@@ -868,7 +872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5182161393120735781, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.955
+      value: -3.83
       objectReference: {fileID: 0}
     - target: {fileID: 5182161393120735781, guid: 27619b81cfba24c42bd1d80094d80f60, type: 3}
       propertyPath: m_LocalRotation.w
