@@ -98,7 +98,6 @@ public class Liquid : MonoBehaviour
             vel.x + vel.y * 0.2f+(angular_vel.z + angular_vel.y) * angular_influence,
             -MaxSlosh,
             MaxSlosh);
-        //(angularVelocity.x + angularVelocity.y) * 0.01f
         slosh_add_z += Mathf.Clamp(
             vel.z + vel.y * 0.2f+ (angular_vel.x + angular_vel.y) * angular_influence,
             -MaxSlosh,
